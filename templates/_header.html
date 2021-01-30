@@ -1,0 +1,139 @@
+{% load static %}
+
+
+<header style="border-bottom: 1px solid #eee;">
+
+    <!-- Messages -->
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div style="border-radius:0;" {% if message.tags %}
+                     class="alert alert-icon alert-{{ message.tags }} alert-dismissible fade show mb-0"
+                     role="alert" {% endif %}>
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <!-- End Messages -->
+
+    <nav class="navbar navbar-light navbar-expand-md bg-white navbar-clean">
+        <div class="container">
+
+            <!-- Кнопка меню для мобил -->
+            <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler">
+                <span class="sr-only">Панель навигации</span>
+                <span class="navbar-toggler-icon"></span></button>
+
+            <!-- Логотип -->
+            <a class="navbar-brand" href="/">
+                <img src="/static/assets/img/logo.png" alt="Anya'School" width="250px">
+            </a>
+            <!-- Сворачивающиеся пункты меню -->
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav mx-auto">
+                    <li role="presentation" class="nav-item"><a class="nav-link active" href="{% url 'index' %}">Домой</a></li>
+                    <li role="presentation" class="nav-item"><a class="nav-link" href="{% url 'about' %}">О нас</a></li>
+                    <li role="presentation" class="nav-item"><a class="nav-link" href="#">Цены</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav mx-auto">
+                    {% if not user.is_anonymous %}
+                        <li role="presentation" class="nav-item">
+                            <span>Вы зашли как<strong> {{ user }}</strong>.</span>
+                            <a href="{% url 'logout' %}" id="logout-btn" class="btn btn-danger" role="button">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li role="presentation" class="nav-item mr-2 my-2">
+                            <button id="signup-btn" class="btn btn-secondary " type="button" name="button">
+                                Начать бесплатно
+                            </button>
+                        </li>
+                        <li role="presentation" class="nav-item">
+
+                            <button id="login-btn" class="btn btn-primary my-2" type="button" name="button">Войти
+                            </button>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+{#<!-- Header -->#}
+{#<header style="border-bottom: 1px solid #eee;">#}
+{#    <!-- Messages -->#}
+{#    <div>#}
+{#        {% if messages %}#}
+{#            {% for message in messages %}#}
+{#                <div style="border-radius:0;" {% if message.tags %}#}
+{#                     class="alert alert-icon alert-{{ message.tags }} alert-dismissible fade show mb-0"#}
+{#                     role="alert" {% endif %}>#}
+{#                    {{ message }}#}
+{#                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+{#                        <span aria-hidden="true">&times;</span>#}
+{#                    </button>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#    </div>#}
+{#    <!-- End Messages -->#}
+{##}
+{#    <div class="container">#}
+{#        <!-- Navbar -->#}
+{#        <!-- Important: columns can be used directly in navbar since it is d-flex -->#}
+{#        <nav class="navbar navbar-expand-md navbar-light clean-navbar">#}
+{##}
+{##}
+{#            <!-- Логотип -->#}
+{#            <div class="container">#}
+{#                <a class="navbar-brand" href="/">#}
+{#                    <img src="/static/assets/img/logo.png" alt="Anya'School" width="80%">#}
+{#                </a>#}
+{##}
+{#                <!-- Кнопка меню для мобил -->#}
+{#                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"#}
+{#                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
+{#                    <span class="navbar-toggler-icon"></span>#}
+{#                </button>#}
+{##}
+{#                <!-- Сворачивающиеся пункты меню -->#}
+{#                <div class="collapse navbar-collapse" id="navbarNav">#}
+{#                    <ul class="nav navbar-nav ml-auto">#}
+{#                        <li role="presentation" class="nav-item active"><a class="nav-link active" href="#">Home</a></li>#}
+{#                        <li role="presentation" class="nav-item"><a class="nav-link" href="#">Features</a></li>#}
+{#                        <li role="presentation" class="nav-item"><a class="nav-link" href="#">Pricing</a></li>#}
+{#                        <li role="presentation" class="nav-item"><a class="nav-link" href="#">Payment</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{##}
+{#                <div class="row">#}
+{#                    <div class="col-12 mb-3">#}
+{#                        {% if not user.is_anonymous %}#}
+{#                            <span>#}
+{#                Вы зашли как#}
+{#                <strong>{{ user }}</strong>.#}
+{#              </span>#}
+{#                            <a href="{% url 'logout' %}" id="logout-btn" class="btn btn-danger"#}
+{#                               role="button">Выйти</a>#}
+{#                        {% else %}#}
+{#                            <div class="col-12 mb-3">#}
+{#                                <button id="signup-btn" class="btn btn-secondary" type="button" name="button">#}
+{#                                    Начать бесплатно#}
+{#                                </button>#}
+{#                            </div>#}
+{#                            <button id="login-btn" class="btn btn-primary" type="button" name="button">Войти#}
+{#                            </button>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                </div>#}
+{#        </nav>#}
+{#        <!-- End Navbar -->#}
+{#    </div>#}
+{#</header>#}
+{#<!-- End Header -->#}
